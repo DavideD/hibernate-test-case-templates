@@ -55,8 +55,6 @@ public class ORMUnitTestCase extends BaseCoreFunctionalTestCase {
 		configuration.setProperty( AvailableSettings.PHYSICAL_NAMING_STRATEGY, "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl" );
 		configuration.setProperty( AvailableSettings.IMPLICIT_NAMING_STRATEGY, "org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl" );
 		configuration.setProperty( AvailableSettings.GLOBALLY_QUOTED_IDENTIFIERS, "true" );
-
-		configuration.addAnnotatedClass( AuthorityDao.class );
 	}
 
 	// Add your tests, using standard JUnit.
