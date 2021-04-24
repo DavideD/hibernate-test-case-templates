@@ -44,12 +44,6 @@ public class ORMUnitTestCase extends BaseCoreFunctionalTestCase {
 		return new Class[] { AuthorityDao.class };
 	}
 
-	// If those mappings reside somewhere other than resources/org/hibernate/test, change this.
-	@Override
-	protected String getBaseForMappings() {
-		return "org/hibernate/test/";
-	}
-
 	// Add in any settings that are specific to your test.  See resources/hibernate.properties for the defaults.
 	@Override
 	protected void configure(Configuration configuration) {
