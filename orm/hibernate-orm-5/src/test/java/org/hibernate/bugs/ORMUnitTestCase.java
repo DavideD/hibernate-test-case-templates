@@ -15,6 +15,11 @@
  */
 package org.hibernate.bugs;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AvailableSettings;
@@ -36,20 +41,9 @@ public class ORMUnitTestCase extends BaseCoreFunctionalTestCase {
 	// Add your entities here.
 	@Override
 	protected Class[] getAnnotatedClasses() {
-		return new Class[] {
-//				Foo.class,
-//				Bar.class
-		};
+		return new Class[] { AuthorityDao.class };
 	}
 
-	// If you use *.hbm.xml mappings, instead of annotations, add the mappings here.
-	@Override
-	protected String[] getMappings() {
-		return new String[] {
-//				"Foo.hbm.xml",
-//				"Bar.hbm.xml"
-		};
-	}
 	// If those mappings reside somewhere other than resources/org/hibernate/test, change this.
 	@Override
 	protected String getBaseForMappings() {
@@ -62,18 +56,37 @@ public class ORMUnitTestCase extends BaseCoreFunctionalTestCase {
 		super.configure( configuration );
 
 		configuration.setProperty( AvailableSettings.SHOW_SQL, Boolean.TRUE.toString() );
-		configuration.setProperty( AvailableSettings.FORMAT_SQL, Boolean.TRUE.toString() );
-		//configuration.setProperty( AvailableSettings.GENERATE_STATISTICS, "true" );
+		configuration.setProperty( AvailableSettings.FORMAT_SQL, Boolean.FALSE.toString() );
+		configuration.setProperty( AvailableSettings.HBM2DDL_AUTO, "validate" );
+		configuration.setProperty( AvailableSettings.PHYSICAL_NAMING_STRATEGY, "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl" );
+		configuration.setProperty( AvailableSettings.IMPLICIT_NAMING_STRATEGY, "org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl" );
+		configuration.setProperty( AvailableSettings.GLOBALLY_QUOTED_IDENTIFIERS, "true" );
+
+		configuration.addAnnotatedClass( AuthorityDao.class );
 	}
 
 	// Add your tests, using standard JUnit.
 	@Test
 	public void hhh123Test() throws Exception {
-		// BaseCoreFunctionalTestCase automatically creates the SessionFactory and provides the Session.
-		Session s = openSession();
-		Transaction tx = s.beginTransaction();
-		// Do stuff...
-		tx.commit();
-		s.close();
 	}
+
+	@Entity
+	@Table(name = "Authorities", schema = "user")
+	public static class AuthorityDao {
+
+		@Id
+		@Column(name = "id")
+		private int id;
+		@Column(name = "name")
+		private String name;
+
+		public int getId() {
+			return id;
+		}
+
+		public String getName() {
+			return name;
+		}
+	}
+
 }

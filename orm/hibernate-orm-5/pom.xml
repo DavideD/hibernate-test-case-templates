@@ -41,6 +41,11 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${version.org.slf4j}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.16</version>
+		</dependency>
 
 		<!-- Not necessary for ORM 5.2 and above -->
 		<dependency>
