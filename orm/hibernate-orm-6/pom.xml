@@ -10,7 +10,7 @@
 	<properties>
 		<version.com.h2database>2.2.224</version.com.h2database>
 		<version.junit>4.13.2</version.junit>
-		<version.org.hibernate>6.4.4.Final</version.org.hibernate>
+		<version.org.hibernate>6.5.0.CR1</version.org.hibernate>
 	</properties>
 
 	<dependencies>
@@ -24,7 +24,11 @@
 			<artifactId>hibernate-testing</artifactId>
 			<version>${version.org.hibernate}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>8.3.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -51,7 +55,7 @@
 			<plugin>
 				<groupId>org.hibernate.orm.tooling</groupId>
 				<artifactId>hibernate-enhance-maven-plugin</artifactId>
-				<version>${version.org.hibernate}</version>
+				<version>6.4.4.Final</version>
 				<executions>
 					<execution>
 						<configuration>
