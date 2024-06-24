@@ -29,16 +29,16 @@
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
+			<version>6.6.0.CR1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-testing</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${version.com.h2database}</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
