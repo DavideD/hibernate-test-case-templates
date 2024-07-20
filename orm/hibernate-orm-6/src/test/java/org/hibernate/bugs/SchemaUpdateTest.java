@@ -2,6 +2,7 @@ package org.hibernate.bugs;
 
 import java.math.BigInteger;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.Array;
 import org.hibernate.boot.Metadata;
@@ -9,7 +10,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import jakarta.persistence.Entity;
@@ -17,17 +17,26 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import org.assertj.core.api.Assertions;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BigIntegerArrayTest {
+public class SchemaUpdateTest {
 
 	private SessionFactory sf;
 
 	@Test
 	public void hhh123Test() {
-		createFactory( "drope" ).close();
-		createFactory( "update" ).close();
+		// Let's drop everything before the update so that we can run the test multiple time
+		createFactory( "drop" ).close();
+		// Create the factory in update mode, it should create the table
+		try (SessionFactory sf = createFactory( "update" )) {
+			try (Session session = sf.openSession()) {
+				session.beginTransaction();
+				assertThat( session.find( BasicTypesTestEntity.class, 1 ) ).isNull();
+				session.getTransaction().commit();
+			}
+		}
 	}
 
 	private static SessionFactory createFactory(String auto) {
@@ -68,6 +77,7 @@ public class BigIntegerArrayTest {
 
 		public BasicTypesTestEntity() {
 		}
+
 		public BasicTypesTestEntity(String name) {
 			this.name = name;
 		}
