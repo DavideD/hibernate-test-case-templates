@@ -8,6 +8,7 @@
 	<name>Hibernate ORM 6 Test Case Template</name>
 
 	<properties>
+		<version.com.postgresqldatabase>42.7.4</version.com.postgresqldatabase>
 		<version.com.h2database>2.3.232</version.com.h2database>
 		<version.junit-jupiter>5.11.0</version.junit-jupiter>
 		<version.org.hibernate.orm>6.6.1.Final</version.org.hibernate.orm>
@@ -42,6 +43,12 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${version.com.h2database}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${version.com.postgresqldatabase}</version>
 		</dependency>
 
 		<dependency>
