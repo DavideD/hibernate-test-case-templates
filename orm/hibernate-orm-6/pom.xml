@@ -10,7 +10,8 @@
 	<properties>
 		<version.com.h2database>2.3.232</version.com.h2database>
 		<version.junit-jupiter>5.11.3</version.junit-jupiter>
-		<version.org.hibernate.orm>6.6.2.Final</version.org.hibernate.orm>
+<!--		<version.org.hibernate.orm>6.6.3.Final</version.org.hibernate.orm>-->
+		<version.org.hibernate.orm>7.0.0-SNAPSHOT</version.org.hibernate.orm>
 		<version.org.assertj.assertj-core>3.26.3</version.org.assertj.assertj-core>
 	</properties>
 
@@ -39,11 +40,15 @@
 			<artifactId>hibernate-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${version.com.h2database}</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.5.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>9.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-testing</artifactId>
@@ -81,27 +86,6 @@
 				<configuration>
 					<release>11</release>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.hibernate.orm.tooling</groupId>
-				<artifactId>hibernate-enhance-maven-plugin</artifactId>
-				<version>${version.org.hibernate.orm}</version>
-				<executions>
-					<execution>
-						<configuration>
-							<base>${project.build.testOutputDirectory}</base>
-							<dir>${project.build.testOutputDirectory}</dir>
-							<enableAssociationManagement>false</enableAssociationManagement>
-							<enableDirtyTracking>false</enableDirtyTracking>
-							<enableExtendedEnhancement>false</enableExtendedEnhancement>
-							<enableLazyInitialization>false</enableLazyInitialization>
-						</configuration>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
