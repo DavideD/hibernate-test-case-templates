@@ -8,9 +8,10 @@
 	<name>Hibernate ORM 6 Test Case Template</name>
 
 	<properties>
-		<version.com.h2database>2.3.232</version.com.h2database>
+		<version.com.pgDatabase>42.7.3</version.com.pgDatabase>
 		<version.junit-jupiter>5.11.3</version.junit-jupiter>
-		<version.org.hibernate.orm>6.6.3.Final</version.org.hibernate.orm>
+<!--		<version.org.hibernate.orm>6.6.3.Final</version.org.hibernate.orm>-->
+		<version.org.hibernate.orm>7.0.0-SNAPSHOT</version.org.hibernate.orm>
 		<version.org.assertj.assertj-core>3.26.3</version.org.assertj.assertj-core>
 	</properties>
 
@@ -39,9 +40,9 @@
 			<artifactId>hibernate-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${version.com.h2database}</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${version.com.pgDatabase}</version>
 		</dependency>
 
 		<dependency>
@@ -81,27 +82,6 @@
 				<configuration>
 					<release>11</release>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.hibernate.orm.tooling</groupId>
-				<artifactId>hibernate-enhance-maven-plugin</artifactId>
-				<version>${version.org.hibernate.orm}</version>
-				<executions>
-					<execution>
-						<configuration>
-							<base>${project.build.testOutputDirectory}</base>
-							<dir>${project.build.testOutputDirectory}</dir>
-							<enableAssociationManagement>false</enableAssociationManagement>
-							<enableDirtyTracking>false</enableDirtyTracking>
-							<enableExtendedEnhancement>false</enableExtendedEnhancement>
-							<enableLazyInitialization>false</enableLazyInitialization>
-						</configuration>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
