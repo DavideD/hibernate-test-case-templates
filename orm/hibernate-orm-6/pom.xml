@@ -45,6 +45,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.5</version>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-testing</artifactId>
 			<scope>test</scope>
